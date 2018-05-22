@@ -9,7 +9,7 @@
   "scripts": {
     "build": "babel src -d lib",
     "test": "standard && mocha --require babel-register",
-    "prepublishOnly": "build"
+    "prepublishOnly": "npm build"
   },
   "repository": {
     "type": "git",
