@@ -28,6 +28,6 @@ const cv = new ChangelogVersion(program)
 cv.release().then(() => {
   console.log('Updated changelog.')
 })
-.catch((e) => {
-  console.error(e)
-})
+  .catch((e) => {
+    console.error(e)
+  })

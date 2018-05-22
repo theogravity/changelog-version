@@ -28,7 +28,7 @@ becomes:
 
 ## install
 
-`npm install @theo.gravity/changelog-version`
+`npm install -g @theo.gravity/changelog-version`
 
 ## Usage
 

@@ -1,15 +1,35 @@
 {
   "name": "@theo.gravity/changelog-version",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Update a changelog with the package version and datestamp based on a template",
   "main": "./lib/index.js",
   "bin": {
     "changelog-version": "./lib/bin/changelog-version.js"
   },
+  "keywords": [
+    "changelog",
+    "readme",
+    "version",
+    "ci",
+    "generate",
+    "semver",
+    "publish",
+    "automation",
+    "cli",
+    "changelog-ci",
+    "changelog-tool",
+    "release",
+    "circle-ci",
+    "travis-ci",
+    "semantic-release",
+    "changes",
+    "automatic"
+  ],
   "scripts": {
     "build": "babel src -d lib",
     "test": "standard && mocha --require babel-register",
-    "prepublishOnly": "npm build"
+    "prepublishOnly": "npm run test && npm run build",
+    "standard-fix": "standard --fix"
   },
   "repository": {
     "type": "git",
