@@ -25,9 +25,12 @@ program
 
 const cv = new ChangelogVersion(program)
 
-cv.release().then(() => {
-  console.log('Updated changelog.')
-})
+cv.release()
+  .then(() => {
+    console.log('Updated changelog.')
+    process.exit(0)
+  })
   .catch((e) => {
     console.error(e)
+    process.exit(-1)
   })
