@@ -1,10 +1,10 @@
 {
   "name": "@theo.gravity/changelog-version",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Update a changelog with the package version and datestamp based on a template",
-  "main": "./lib/index.js",
+  "main": "lib/index.js",
   "bin": {
-    "changelog-version": "./lib/bin/changelog-version.js"
+    "changelog-version": "lib/bin/changelog-version.js"
   },
   "keywords": [
     "changelog",
