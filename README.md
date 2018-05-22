@@ -4,6 +4,7 @@ Update the changelog version / timestamp with customizable options:
 
 - Changelog file name
 - Where to find your version data
+- What your `unreleased` text for replacement should be (eg `[UNRELEASED]`, `*version*`, etc)
 - What your release tag should look like (via the `{date}`, `{version}` tags)
 
 Using the default options, a file named `CHANGELOG.md` with the following content:
