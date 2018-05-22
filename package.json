@@ -1,0 +1,38 @@
+{
+  "name": "@theo.gravity/changelog-version",
+  "version": "1.0.0",
+  "description": "Update a changelog with the package version and datestamp based on a template",
+  "main": "./lib/index.js",
+  "bin": {
+    "changelog-version": "./lib/bin/changelog-version.js"
+  },
+  "scripts": {
+    "build": "babel src -d lib",
+    "test": "standard && mocha --require babel-register",
+    "prepublishOnly": "build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theogravity/changelog-version.git"
+  },
+  "author": "Theo Gravity <theo@suteki.nu>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/theogravity/changelog-version/issues"
+  },
+  "homepage": "https://github.com/theogravity/changelog-version#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "mock-fs": "^4.5.0",
+    "standard": "^11.0.1"
+  },
+  "dependencies": {
+    "commander": "^2.15.1",
+    "dateformat": "^3.0.3",
+    "debug": "^3.1.0"
+  }
+}
