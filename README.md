@@ -48,7 +48,9 @@ Your `package.json` file must have the new version you want to stamp the changel
 
 <!-- TOC -->
 - [Install](#install)
-  - [Sample workflow scripts](#sample-workflow-scripts)
+- [Quick start usage](#quick-start-usage)
+  - [Mark a new unreleased entry into the changelog](#mark-a-new-unreleased-entry-into-the-changelog)
+  - [Stamp the changelog with the current version + time from package.json](#stamp-the-changelog-with-the-current-version--time-from-packagejson)
 - [CLI Usage](#cli-usage)
   - [prepare](#prepare)
     - [Example 1](#example-1)
@@ -61,6 +63,9 @@ Your `package.json` file must have the new version you want to stamp the changel
       - [`async onBeforeRelease`](#async-onbeforerelease)
       - [`async onAfterRelease({ version, date, releaseStamp })`](#async-onafterrelease-version-date-releasestamp-)
 - [API](#api)
+- [CI Integration](#ci-integration)
+  - [Auto-versioning + publishing in your CI](#auto-versioning--publishing-in-your-ci)
+    - [CircleCI](#circleci)
 
 <!-- TOC END -->
 
