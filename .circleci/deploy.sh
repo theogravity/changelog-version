@@ -11,8 +11,14 @@ then
   git config --global user.email "theo@suteki.nu"
   git config --global user.name "CircleCI Publisher"
 
+  # Stash any prior changes to prevent merge conflicts
+  git stash
+
   # Make sure to get the latest master (if there were any prior commits)
   git pull origin
+
+  # Re-apply the stash
+  git stash apply
 
   # Version bump package.json (package.json is committed by npm-version-git), stamp CHANGELOG.md
   yarn prepare-publish
