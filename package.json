@@ -1,6 +1,6 @@
 {
   "name": "@theo.gravity/changelog-version",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Creates / updates a changelog with customizable options, including version / timestamp.",
   "main": "lib/index.js",
   "bin": {
@@ -33,7 +33,7 @@
     "toc": "toc-md README.md README.md",
     "prepare-log": "node --require babel-register ./src/bin/changelog-version.js prepare",
     "release-log": "node --require babel-register ./src/bin/changelog-version.js release",
-    "raise-version:patch": "npm version patch && npm run release-log && git add CHANGELOG.md package.json"
+    "raise-version:patch": "npm version patch --force && npm run release-log && git add CHANGELOG.md package.json && git commit --amend"
   },
   "repository": {
     "type": "git",

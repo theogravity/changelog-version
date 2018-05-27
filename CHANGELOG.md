@@ -1,3 +1,7 @@
+# 2.0.4 - Sun May 27 2018 03:24:42
+
+- More documentation
+
 # 2.0.2 - Sun May 27 2018 03:11:02
 
 - More documentation
