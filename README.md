@@ -44,16 +44,6 @@ Your `package.json` file must have the new version you want to stamp the changel
 `changelog-version release`.
 - Commit changes to your VCS.
 
-### Example script (for patch level changes)
-
-```
-{
-  "scripts": {
-    "raise-version:patch": "npm version patch && node ./node_modules/.bin/changelog-version release && git add CHANGELOG.md package.json"
-  }
-}
-```
-
 ## Contents
 
 <!-- TOC -->
@@ -76,6 +66,23 @@ Your `package.json` file must have the new version you want to stamp the changel
 ## Install
 
 `npm install -g @theo.gravity/changelog-version`
+
+### Sample workflow scripts
+
+- Version bumps `package.json` and commits it immediately to git
+- Executes `changelog-version release` to stamp the `CHANGELOG.md` file (make sure you have the unreleased
+stamp filled in with your release notes)
+- Amends the `package.json` commit with the updated `CHANGELOG.md` file
+
+```
+{
+  "scripts": {
+    "version:patch": "npm version patch --force && changelog-version release && git add CHANGELOG.md && git commit --amend --no-edit",
+    "version:minor": "npm version minor --force && changelog-version release && git add CHANGELOG.md && git commit --amend --no-edit",
+    "version:major": "npm version major --force && changelog-version release && git add CHANGELOG.md && git commit --amend --no-edit"
+  }
+}
+```
 
 ## CLI Usage
 
