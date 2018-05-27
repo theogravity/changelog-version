@@ -28,7 +28,6 @@
   "scripts": {
     "build": "npm run toc && babel src -d lib",
     "test": "standard && mocha --recursive --require babel-register",
-    "prepublishOnly": "npm run test && npm run build",
     "standard-fix": "standard --fix",
     "toc": "toc-md README.md README.md",
     "prepare-log": "node --require babel-register ./src/bin/changelog-version.js prepare",
