@@ -1,3 +1,7 @@
+# 2.0.2 - Sun May 27 2018 03:11:02
+
+- More documentation
+
 # 2.0.1 - Sun May 27 2018 02:28:42
 
 - Fix unit tests

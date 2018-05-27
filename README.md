@@ -7,6 +7,8 @@
 
 Creates / updates a changelog with customizable options, including version / timestamp.
 
+## What it can do
+
 - Changelog file name
 - Where to find your version data
 - What your `unreleased` text for replacement should be (eg `[UNRELEASED]`, `*version*`, etc)
@@ -35,6 +37,23 @@ into this:
 - I have a change!
 ```
 
+## What it will not do
+
+- Version bumping `package.json`. [`npm version`](https://docs.npmjs.com/cli/version) can do that job.
+Your `package.json` file must have the new version you want to stamp the changelog with before running
+`changelog-version release`.
+- Commit changes to your VCS.
+
+### Example script (for patch level changes)
+
+```
+{
+  "scripts": {
+    "raise-version": "node ./node_modules/.bin/npm-version-git && node ./node_modules/.bin/changelog-version release && git add CHANGELOG.md"
+  }
+}
+```
+
 ## Contents
 
 <!-- TOC -->
@@ -54,7 +73,7 @@ into this:
 
 <!-- TOC END -->
 
-## install
+## Install
 
 `npm install -g @theo.gravity/changelog-version`
 
