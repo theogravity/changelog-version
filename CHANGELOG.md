@@ -1,3 +1,8 @@
+# UNRELEASED
+
+- Add CI automation to automatically build and publish the package
+- Add CI instructions
+
 # 2.0.8 - Sun May 27 2018 03:39:17
 
 - More documentation

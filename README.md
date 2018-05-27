@@ -4,7 +4,6 @@
 [![npm version](https://badge.fury.io/js/%40theo.gravity%2Fchangelog-version.svg)](https://badge.fury.io/js/%40theo.gravity%2Fchangelog-version)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-
 Creates / updates a changelog with customizable options, including version / timestamp.
 
 ## What it can do
@@ -68,22 +67,15 @@ Your `package.json` file must have the new version you want to stamp the changel
 
 `npm install -g @theo.gravity/changelog-version`
 
-### Sample workflow scripts
+## Quick start usage
 
-- Version bumps `package.json` and commits it immediately to git
-- Executes `changelog-version release` to stamp the `CHANGELOG.md` file (make sure you have the unreleased
-stamp filled in with your release notes)
-- Amends the `package.json` commit with the updated `CHANGELOG.md` file
+### Mark a new unreleased entry into the changelog
 
-```
-{
-  "scripts": {
-    "version:patch": "npm version patch --force && changelog-version release && git add CHANGELOG.md && git commit --amend --no-edit",
-    "version:minor": "npm version minor --force && changelog-version release && git add CHANGELOG.md && git commit --amend --no-edit",
-    "version:major": "npm version major --force && changelog-version release && git add CHANGELOG.md && git commit --amend --no-edit"
-  }
-}
-```
+`changelog-version prepare`
+
+### Stamp the changelog with the current version + time from package.json
+
+`changelog-version release`
 
 ## CLI Usage
 
@@ -309,3 +301,28 @@ Called after the changelog has been updated.
 
 - See `src` for the API.
 - See the `test` directory for API usage samples.
+
+## CI Integration
+
+### Auto-versioning + publishing in your CI
+
+Make sure you have `changelog-version` installed locally into your project.
+
+`npm install @theo.gravity/changelog-version --dev`
+
+#### CircleCI
+
+This repo uses CircleCI to automatically version stamp the `CHANGELOG.md` file and publish to npm with the new version.
+
+See the `.circleci/` directory for auto release log stamping, version bumping and npm publishing.
+
+The following `package.json` script is used in conjunction with the CircleCI flow:
+
+```json
+{
+  "scripts": {
+      "release-log": "changelog-version release",
+      "prepare-publish": "npm-version-git && npm run release-log"
+  }
+}
+```

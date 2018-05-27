@@ -33,9 +33,7 @@
     "toc": "toc-md README.md README.md",
     "prepare-log": "node --require babel-register ./src/bin/changelog-version.js prepare",
     "release-log": "node --require babel-register ./src/bin/changelog-version.js release",
-    "version:patch": "npm run toc && npm version patch --force && npm run release-log && git add CHANGELOG.md README.md && git commit --amend --no-edit",
-    "version:minor": "npm run toc && npm version minor --force && npm run release-log && git add CHANGELOG.md README.md && git commit --amend --no-edit",
-    "version:major": "npm run toc && npm version major --force && npm run release-log && git add CHANGELOG.md README.md && git commit --amend --no-edit"
+    "prepare-publish": "npm-version-git && npm run release-log"
   },
   "repository": {
     "type": "git",
