@@ -32,7 +32,8 @@
     "standard-fix": "standard --fix",
     "toc": "toc-md README.md README.md",
     "prepare-log": "node --require babel-register ./src/bin/changelog-version.js prepare",
-    "release-log": "node --require babel-register ./src/bin/changelog-version.js release"
+    "release-log": "node --require babel-register ./src/bin/changelog-version.js release",
+    "raise-version:patch": "npm version patch && npm run release-log && git add CHANGELOG.md package.json"
   },
   "repository": {
     "type": "git",

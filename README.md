@@ -49,7 +49,7 @@ Your `package.json` file must have the new version you want to stamp the changel
 ```
 {
   "scripts": {
-    "raise-version": "node ./node_modules/.bin/npm-version-git && node ./node_modules/.bin/changelog-version release && git add CHANGELOG.md"
+    "raise-version:patch": "npm version patch && node ./node_modules/.bin/changelog-version release && git add CHANGELOG.md package.json"
   }
 }
 ```
@@ -57,7 +57,7 @@ Your `package.json` file must have the new version you want to stamp the changel
 ## Contents
 
 <!-- TOC -->
-- [install](#install)
+- [Install](#install)
 - [CLI Usage](#cli-usage)
   - [prepare](#prepare)
     - [Example 1](#example-1)
