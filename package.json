@@ -26,13 +26,13 @@
     "automatic"
   ],
   "scripts": {
-    "build": "npm run toc-md && babel src -d lib",
+    "build": "npm run toc && babel src -d lib",
     "test": "standard && mocha --recursive --require babel-register",
     "prepublishOnly": "npm run test && npm run build",
     "standard-fix": "standard --fix",
     "toc": "toc-md README.md README.md",
-    "prepare": "node --require babel-register ./src/bin/changelog-version.js prepare",
-    "release": "node --require babel-register ./src/bin/changelog-version.js release"
+    "prepare-log": "node --require babel-register ./src/bin/changelog-version.js prepare",
+    "release-log": "node --require babel-register ./src/bin/changelog-version.js release"
   },
   "repository": {
     "type": "git",
@@ -52,12 +52,12 @@
     "chai": "^4.1.2",
     "mocha": "^5.2.0",
     "mock-fs": "^4.5.0",
-    "standard": "^11.0.1"
+    "standard": "^11.0.1",
+    "toc-md": "^0.2.0"
   },
   "dependencies": {
     "commander": "^2.15.1",
     "dateformat": "^3.0.3",
-    "debug": "^3.1.0",
-    "toc-md": "^0.2.0"
+    "debug": "^3.1.0"
   }
 }
