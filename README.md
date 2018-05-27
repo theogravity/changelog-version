@@ -48,6 +48,7 @@ Your `package.json` file must have the new version you want to stamp the changel
 
 <!-- TOC -->
 - [Install](#install)
+  - [Sample workflow scripts](#sample-workflow-scripts)
 - [CLI Usage](#cli-usage)
   - [prepare](#prepare)
     - [Example 1](#example-1)
