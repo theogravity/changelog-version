@@ -1,6 +1,7 @@
 # changelog-version
 
 [![CircleCI](https://circleci.com/gh/theogravity/changelog-version.svg?style=svg)](https://circleci.com/gh/theogravity/changelog-version)
+[![npm version](https://badge.fury.io/js/%40theo.gravity%2Fchangelog-version.svg)](https://badge.fury.io/js/%40theo.gravity%2Fchangelog-version)
 
 Creates / updates a changelog with customizable options, including version / timestamp.
 
