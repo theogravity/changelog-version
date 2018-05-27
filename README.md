@@ -307,10 +307,10 @@ Called after the changelog has been updated.
 ### Auto-versioning + publishing in your CI
 
 Make sure you have `changelog-version` and
-[`npm-version-git`](https://www.npmjs.com/package/npm-version-git) installed
+[`npm-version-git-cli`](https://www.npmjs.com/package/npm-version-git-cli) installed
 locally into your project.
 
-`npm install npm-version-git @theo.gravity/changelog-version --dev`
+`npm install npm-version-git-cli @theo.gravity/changelog-version --dev`
 
 #### CircleCI
 
