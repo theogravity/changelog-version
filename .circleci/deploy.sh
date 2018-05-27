@@ -3,10 +3,10 @@
 # Fails the build if any of the steps below fails
 set -e
 
-# publish
 if [[ "${CIRCLE_BRANCH}" == "master" ]]
 then
   echo "Raising package version and updating CHANGELOG.md"
+
   git config --global push.default simple
   git config --global user.email "theo@suteki.nu"
   git config --global user.name "CircleCI Publisher"
