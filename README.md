@@ -4,9 +4,9 @@
 [![npm version](https://badge.fury.io/js/%40theo.gravity%2Fchangelog-version.svg)](https://badge.fury.io/js/%40theo.gravity%2Fchangelog-version)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-Creates / updates a changelog with customizable options, including version / timestamp.
+Creates / updates a changelog with customizable options, including version / timestamp / CI support.
 
-## What it can do
+## What it offers
 
 - Changelog file name
 - Where to find your version data
@@ -15,6 +15,7 @@ Creates / updates a changelog with customizable options, including version / tim
 - Date formatting via the [`dateformat`](https://www.npmjs.com/package/dateformat) library
 - Use a custom config file with additional callback handlers
 - Helper command included to create a changelog file + stamp it with the `unreleased` text
+- Examples on how to auto-increment your logs and publish to npm in your CI
 
 Turn this (the format can be customized):
 
@@ -325,7 +326,7 @@ The following `package.json` script is used in conjunction with the CircleCI flo
 {
   "scripts": {
       "release-log": "changelog-version release",
-      "prepare-publish": "npm-version-git && npm run release-log"
+      "prepare-publish": "npm-version-git-cli && npm run release-log"
   }
 }
 ```
