@@ -1,5 +1,7 @@
 # changelog-version
 
+[![CircleCI](https://circleci.com/gh/theogravity/changelog-version.svg?style=svg)](https://circleci.com/gh/theogravity/changelog-version)
+
 Creates / updates a changelog with customizable options, including version / timestamp.
 
 - Changelog file name
