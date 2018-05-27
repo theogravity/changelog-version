@@ -198,7 +198,7 @@ If detected, `changelog-version` will derive options from this file.
 With the exception of `projectRoot`, options defined on the command line will take
 precedence.
 
-```
+```js
 // This is an optional configuration file
 // you can use with changelog-version.
 // If specified, any command line args has priority over the
