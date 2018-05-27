@@ -306,13 +306,16 @@ Called after the changelog has been updated.
 
 ### Auto-versioning + publishing in your CI
 
-Make sure you have `changelog-version` installed locally into your project.
+Make sure you have `changelog-version` and
+[`npm-version-git`](https://www.npmjs.com/package/npm-version-git) installed
+locally into your project.
 
-`npm install @theo.gravity/changelog-version --dev`
+`npm install npm-version-git @theo.gravity/changelog-version --dev`
 
 #### CircleCI
 
-This repo uses CircleCI to automatically version stamp the `CHANGELOG.md` file and publish to npm with the new version.
+This repo uses CircleCI to automatically version stamp the `CHANGELOG.md` file and
+publish to npm with the new version.
 
 See the `.circleci/` directory for auto release log stamping, version bumping and npm publishing.
 
