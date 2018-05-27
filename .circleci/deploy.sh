@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Fails the build if any of the steps below fails
-set -e
-
 if [[ "${CIRCLE_BRANCH}" == "master" ]]
 then
   echo "Raising package version and updating CHANGELOG.md"
@@ -19,6 +16,9 @@ then
 
   # Re-apply the stash
   git stash apply
+
+  # Fails the build if any of the steps below fails
+  set -e
 
   # Version bump package.json (package.json is committed by npm-version-git), stamp CHANGELOG.md
   yarn prepare-publish
