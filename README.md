@@ -1,5 +1,7 @@
 # changelog-version
 
+[![Build Status](https://travis-ci.org/theogravity/changelog-version.svg?branch=master)](https://travis-ci.org/theogravity/changelog-version)
+
 Creates / updates a changelog with customizable options, including version / timestamp.
 
 - Changelog file name
