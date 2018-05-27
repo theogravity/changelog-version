@@ -6,6 +6,9 @@ import ChangelogVersion from '../src/ChangelogVersion'
 import { readFile, existsSync } from 'fs'
 import util from 'util'
 import { join } from 'path'
+import MockDate from 'mockdate'
+
+MockDate.set('1/1/2000')
 
 const readFileAsync = util.promisify(readFile)
 const projectRoot = process.cwd()
@@ -13,11 +16,6 @@ const projectRoot = process.cwd()
 const defaultChangelogStamp = `# [UNRELEASED]
 
 `
-
-Date.now = () => {
-  // 4th May 2016 04:27:29
-  return 1462361249717
-}
 
 const defaultChangelogContent = `
 # Changelog
@@ -58,7 +56,7 @@ describe('ChangelogVersion class', () => {
     expect(data).to.equal(`
 # Changelog
 
-## 1.2.3 - Wed May 04 2016 04:27:29
+## 1.2.3 - Sat Jan 01 2000 00:00:00
 
 - I have a change!
 `)

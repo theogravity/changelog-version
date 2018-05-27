@@ -6,14 +6,11 @@ import VersionStamper from '../../src/stampers/VersionStamper'
 import { readFile } from 'fs'
 import util from 'util'
 import { join } from 'path'
+import MockDate from 'mockdate'
 
+MockDate.set('1/1/2000')
 const readFileAsync = util.promisify(readFile)
 const projectRoot = process.cwd()
-
-Date.now = () => {
-  // 4th May 2016 04:27:29
-  return 1462361249717
-}
 
 const defaultChangelogContent = `
 # Changelog
@@ -41,7 +38,7 @@ describe('VersionStamper class', () => {
     expect(data).to.equal(`
 # Changelog
 
-## 1.2.3 - Wed May 04 2016 04:27:29
+## 1.2.3 - Sat Jan 01 2000 00:00:00
 
 - I have a change!
 `)
@@ -68,7 +65,7 @@ describe('VersionStamper class', () => {
     expect(data).to.equal(`
 # Changelog
 
-## 1.2.3 - Wed May 04 2016 04:27:29
+## 1.2.3 - Sat Jan 01 2000 00:00:00
 
 - I have a change!
 `)
@@ -96,7 +93,7 @@ describe('VersionStamper class', () => {
     expect(data).to.equal(`
 # Changelog
 
-## 4.4.6 - Wed May 04 2016 04:27:29
+## 4.4.6 - Sat Jan 01 2000 00:00:00
 
 - I have a change!
 `)
@@ -121,7 +118,7 @@ describe('VersionStamper class', () => {
 
     const data = await readFileAsync(join(projectRoot, changelogFile), 'utf8')
 
-    expect(data).to.equal(`# 4.4.6 - Wed May 04 2016 04:27:29`)
+    expect(data).to.equal(`# 4.4.6 - Sat Jan 01 2000 00:00:00`)
 
     fsMock.restore()
   })
@@ -146,7 +143,7 @@ describe('VersionStamper class', () => {
     expect(data).to.equal(`
 # Changelog
 
-## Wed May 04 2016 04:27:29 / 1.2.3
+## Sat Jan 01 2000 00:00:00 / 1.2.3
 
 - I have a change!
 `)
@@ -174,7 +171,7 @@ describe('VersionStamper class', () => {
     expect(data).to.equal(`
 # Changelog
 
-## 1.2.3 - 27
+## 1.2.3 - 00
 
 - I have a change!
 `)

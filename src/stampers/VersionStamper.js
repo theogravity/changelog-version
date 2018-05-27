@@ -76,7 +76,7 @@ export default class VersionStamper extends BaseStamper {
    * @private
    */
   _getReleaseDate () {
-    return dateFormat(Date.now(), this.dateFormat)
+    return dateFormat(new Date(), this.dateFormat)
   }
 
   /**

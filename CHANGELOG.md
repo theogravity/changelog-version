@@ -1,3 +1,8 @@
+# UNRELEASED
+
+- Fix unit tests
+- Use `new Date()` for the date formatter instead of `Date.now()`
+
 # 2.0.0 - Sun May 27 2018 00:23:19
 
 ## New major version
