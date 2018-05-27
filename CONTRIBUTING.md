@@ -27,7 +27,7 @@ Once you have permissions:
 
 - Do a squash merge on your PR and delete the branch (if applicable)
 - Update your local repository against the latest master
-- Run [`npm version`](https://docs.npmjs.com/cli/version) to version bump package.json
+- Run [`npm version`](https://docs.npmjs.com/cli/version) to version bump `package.json`
 - Run `npm run release-log` to stamp the `CHANGELOG.md` file
 - Commit and push the changed `package.json` and `CHANGELOG.md` file
 - Run `npm publish` to publish the new package
