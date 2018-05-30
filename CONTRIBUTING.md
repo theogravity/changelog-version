@@ -11,7 +11,7 @@ Anyone that contributes useful code will be granted repo write access.
 - Your PR should contain unit tests for any additions / fixes. PRs with failing tests will not be accepted (with exceptions).
 - Your code should pass linting (runs part of tests).
 - Do *not* version bump `package.json`.
-- Use `npm run prepare-log` to stamp the `CHANGELOG.md` file. Add your release comments below the stamp.
+- Use `npm run changelog:prepare` to stamp the `CHANGELOG.md` file. Add your release comments below the stamp.
 
 You can now submit your PR.
 
