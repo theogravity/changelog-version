@@ -1,3 +1,10 @@
+# UNRELEASED
+
+The ability to exit with an error code if the changelog lacks the unreleasedTag is now available.
+
+- Added new flag: `--requireUnreleasedEntry`
+- Added new command: `changelog-version verify`
+
 # 2.0.12 - Sun May 27 2018 21:42:16
 
 - Fix CI builds

@@ -26,9 +26,6 @@ then
   # Changelog is now stamped with the version / time info - add to git
   git add CHANGELOG.md
 
-  # Add the readme because the TOC might have been updated
-  git add README.md
-
   # Amend the version commit with a ci skip so when we push the commits from the CI
   # The CI does not end up recursively building it
 

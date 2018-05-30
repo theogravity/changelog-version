@@ -2,6 +2,7 @@
 
 import program from 'commander'
 import ChangelogVersion from '../ChangelogVersion'
+import { UnreleasedEntryNotFound } from '../errors'
 
 const packageData = require('../../package.json')
 
@@ -33,6 +34,8 @@ program
   .description(`Stamp the changelog with the version / date info.
 
   You do *NOT* have to use "changelog-version prepare" before using this command.`)
+  .option('--requireUnreleasedEntry', `If present, will exit with an error code if the 
+                                    unreleasedTag is not found in the changelog file.`)
   .option('--packageFile [fileName]', `The relative path to package.json, or a JSON file that
                                     contains the "version" field from projectRoot.
                                     Default is "package.json".`)
@@ -49,12 +52,25 @@ program
     await runRelease(opt)
   })
 
+program
+  .command('verify')
+  .description(`Verifies that the changelog contains the unreleasedTag.
+  Returns with an error status if the changelog does not have it.
+  
+  Useful to run as part of a pre-commit hook.`)
+  .option('--unreleasedTag [textToLookFor]', `The text to find in the changelog.
+                                    Default is "[UNRELEASED]".`)
+  .action(async function (action, opt) {
+    await runVerify(opt)
+  })
+
 program.on('--help', function () {
   console.log('')
   console.log('  Examples:')
   console.log('')
   console.log('    $ changelog-version prepare --newUnreleasedText "## [VERSION_GOES_HERE]\\n\\n"')
   console.log('    $ changelog-version release --unreleasedTag "[VERSION_GOES_HERE]" --unreleasedTagFormat "{version}"')
+  console.log('    $ changelog-version verify')
   console.log('')
 })
 
@@ -66,7 +82,7 @@ if (!program.args.length) {
 
 function showHelp () {
   program.help()
-  process.exit(-1)
+  process.exit(-2)
 }
 
 async function runPrepare (options) {
@@ -76,8 +92,7 @@ async function runPrepare (options) {
     await cv.prepare()
     console.log('Changelog prepared for new release notes.')
   } catch (e) {
-    console.error(e)
-    process.exit(-1)
+    handleError(e)
   }
 }
 
@@ -89,7 +104,30 @@ async function runRelease (options) {
     console.log('Changelog updated with release information.')
     process.exit(0)
   } catch (e) {
-    console.error(e)
-    process.exit(-1)
+    handleError(e)
   }
+}
+
+async function runVerify (options = {}) {
+  try {
+    const cv = new ChangelogVersion(options)
+    await cv.init()
+    await cv.verify()
+
+    console.log(`Changelog contains the unreleasedTag entry.`)
+
+    process.exit(0)
+  } catch (e) {
+    handleError(e)
+  }
+}
+
+function handleError (e) {
+  if (e instanceof UnreleasedEntryNotFound) {
+    console.error(e.message)
+    process.exit(-3)
+  }
+
+  console.error(e)
+  process.exit(-1)
 }

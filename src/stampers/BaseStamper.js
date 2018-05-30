@@ -1,9 +1,9 @@
-import { writeFile, readFile } from 'fs'
+import { writeFile } from 'fs'
 import util from 'util'
 import { join } from 'path'
+import { getFileContents } from '../utils'
 
 const writeFileAsync = util.promisify(writeFile)
-const readFileAsync = util.promisify(readFile)
 
 const debug = require('debug')('base-stamper')
 
@@ -36,7 +36,7 @@ export default class BaseStamper {
 
   /**
    * Gets the raw file data
-   * @return {Promise<{string}>} Contents of the file
+   * @return {Promise<string>} Contents of the file
    * @protected
    */
   async _readFileContents (file) {
@@ -46,15 +46,6 @@ export default class BaseStamper {
 
     const filePath = join(this.projectRoot, file)
 
-    let fileContents = null
-
-    try {
-      fileContents = await readFileAsync(filePath, 'utf8')
-    } catch (e) {
-      debug(e)
-      throw new Error(`Unable to read file at: ${filePath}`)
-    }
-
-    return fileContents
+    return getFileContents(filePath)
   }
 }

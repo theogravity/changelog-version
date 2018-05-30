@@ -21,6 +21,17 @@ export default class ChangelogVersion {
   }
 
   /**
+   * Performs the process in which the changelog file is stamped with a new
+   * unreleased entry, which can later be used by released() to stamp the new
+   * version / time info.
+   * @returns {Promise<void>}
+   */
+  async prepare () {
+    const stamper = new PrepareStamper(this.options)
+    await stamper.stampUnreleased()
+  }
+
+  /**
    * Performs the process in which the changelog file is stamped with the
    * latest version / time info.
    * @returns {Promise<void>}
@@ -31,13 +42,11 @@ export default class ChangelogVersion {
   }
 
   /**
-   * Performs the process in which the changelog file is stamped with a new
-   * unreleased entry, which can later be used by released() to stamp the new
-   * version / time info.
-   * @returns {Promise<void>}
+   * Throws UnreleasedEntryNotFound changelog does not contain the unreleasedTag.
+   * @return {Promise<void>}
    */
-  async prepare () {
-    const stamper = new PrepareStamper(this.options)
-    await stamper.stampUnreleased()
+  async verify () {
+    const stamper = new VersionStamper(this.options)
+    await stamper.verify()
   }
 }

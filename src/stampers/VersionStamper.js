@@ -1,5 +1,6 @@
 import dateFormat from 'dateformat'
 import BaseStamper from './BaseStamper'
+import { UnreleasedEntryNotFound } from '../errors'
 
 const debug = require('debug')('version-stamper')
 
@@ -15,6 +16,8 @@ export default class VersionStamper extends BaseStamper {
    * replacing the versionTag. Default is "default".
    * @param {string} [options.unreleasedTagFormat] Format to replace unreleasedTag with. Available tags are
    * "{version}" and "{date}". Default is '{version} - {date}'
+   * @param {boolean} [options.requireUnreleasedEntry] If true, will throw an error if the unreleasedTag
+   * is not found in the changelog content.
    * @param {function} [options.onBeforeRelease] This is called before doing the version stamping.
    * @param {function} [options.onAfterRelease] This is called after the version stamping is complete.
    * This function is called with the following params:
@@ -28,12 +31,14 @@ export default class VersionStamper extends BaseStamper {
     this.dateFormat = options.dateFormat || 'default'
     this.unreleasedTag = options.unreleasedTag || '[UNRELEASED]'
     this.unreleasedTagFormat = options.unreleasedTagFormat || '{version} - {date}'
+    this.requireUnreleasedEntry = options.requireUnreleasedEntry || false
 
     this.onBeforeRelease = options.onBeforeRelease || function () {}
     this.onAfterRelease = options.onAfterRelease || function () {}
   }
 
   /**
+   * - Throws if requireUnreleasedEntry is true and the release tag is not found
    * - Reads the packageFile and finds the "version" field
    * - Reads the changelogFile file and finds the unreleasedTag
    * - Generates the version stamp using unreleasedTagFormat
@@ -42,12 +47,19 @@ export default class VersionStamper extends BaseStamper {
    */
   async release () {
     await this.onBeforeRelease()
-    const fileContents = await this._getDataForFiles()
+    const changelogContents = await this._readFileContents(this.changelogFile)
+    const packageFileContents = await this._readFileContents(this.packageFile)
+
+    if (this.requireUnreleasedEntry) {
+      await this._throwIfReleaseTagNotFound(changelogContents)
+    }
+
     const date = this._getReleaseDate()
-    const version = this._getVersion(fileContents.packageFileContents)
+    const version = this._getVersion(packageFileContents)
     const releaseStamp = this._getReleaseStamp(version, date)
+
     const newChangelogData = this._replaceUnreleasedTag(
-      fileContents.changelogFileContents,
+      changelogContents,
       releaseStamp
     )
 
@@ -60,7 +72,7 @@ export default class VersionStamper extends BaseStamper {
   }
 
   /**
-   * Replaces the specified unreleasedTag in the changelog data with the release stamp
+   * Replaces the specified unreleasedTag in the changelog data with the release stamp.
    * @param {string} changelogData The changelog text
    * @param {string} releaseStamp The data to replace unreleasedTag with
    * @return {string} Updated changelog text with the release stamp
@@ -115,16 +127,21 @@ export default class VersionStamper extends BaseStamper {
   }
 
   /**
-   * Gets the raw file data for the changelog and version file
-   * @return {Promise<{changelogFileContents: string, packageFileContents: string}>}
-   * @private
+   * Throws if the release tag was not found
+   * @return {Promise<void>}
    */
-  async _getDataForFiles () {
-    // note: _readFileContents already throws the appropriate error message
-    // if something goes wrong, so no need to catch and log here
-    return {
-      changelogFileContents: await this._readFileContents(this.changelogFile),
-      packageFileContents: await this._readFileContents(this.packageFile)
+  async _throwIfReleaseTagNotFound (changelogData) {
+    if (!changelogData.includes(this.unreleasedTag)) {
+      throw new UnreleasedEntryNotFound(this.unreleasedTag)
     }
+  }
+
+  /**
+   * Throws UnreleasedEntryNotFound if the changelog does not contain the unreleasedTag.
+   * @return {Promise<void>}
+   */
+  async verify () {
+    const changelogContents = await this._readFileContents(this.changelogFile)
+    await this._throwIfReleaseTagNotFound(changelogContents)
   }
 }

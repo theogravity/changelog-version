@@ -57,6 +57,7 @@ Your `package.json` file must have the new version you want to stamp the changel
     - [Example 2](#example-2)
   - [release](#release)
     - [Example](#example)
+  - [Verify](#verify)
 - [Custom configuration file](#custom-configuration-file)
   - [Additional properties](#additional-properties)
     - [Release properties](#release-properties)
@@ -88,7 +89,7 @@ Your `package.json` file must have the new version you want to stamp the changel
 ```
 $ changelog-version
 
- Usage: changelog-version <command> [options]
+  Usage: changelog-version <command> [options]
 
   Utility for creating and updating a changelog file.
   Use "<command> --help" for additional options.
@@ -111,10 +112,17 @@ $ changelog-version
       A new file (defined by --changelogFile) will be created if one does not exist.
     release [options]           Stamp the changelog with the version / date info.
 
+      You do *NOT* have to use "changelog-version prepare" before using this command.
+    verify [options]            Verifies that the changelog contains the unreleasedTag.
+      Returns with an error status if the changelog does not have it.
+
+      Useful to run as part of a pre-commit hook.
+
   Examples:
 
     $ changelog-version prepare --newUnreleasedText "## [VERSION_GOES_HERE]\n\n"
     $ changelog-version release --unreleasedTag "[VERSION_GOES_HERE]" --unreleasedTagFormat "{version}"
+    $ changelog-version verify
 ```
 
 ### prepare
@@ -213,6 +221,25 @@ Running `changelog-version release` will update `CHANGELOG.md` with:
 # 1.2.3 - <current date>
 
 * New feature!
+```
+
+### Verify
+
+```
+$ changelog-version verify --help
+
+  Usage: verify [options]
+
+  Verifies that the changelog contains the unreleasedTag.
+  Returns with an error status if the changelog does not have it.
+
+  Useful to run as part of a pre-commit hook.
+
+  Options:
+
+    --unreleasedTag [textToLookFor]  The text to find in the changelog.
+                                        Default is "[UNRELEASED]".
+    -h, --help                       output usage information
 ```
 
 ## Custom configuration file

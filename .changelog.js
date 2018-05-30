@@ -48,5 +48,6 @@ module.exports = {
   unreleasedTag: () => {
     return 'UNRELEASED'
   },
-  unreleasedTagFormat: '{version} - {date}'
+  unreleasedTagFormat: '{version} - {date}',
+  requireUnreleasedEntry: true
 }
