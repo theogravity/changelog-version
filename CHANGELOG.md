@@ -1,4 +1,4 @@
-# UNRELEASED
+# 2.1.1 - Wed May 30 2018 20:00:10
 
 - Added `--requireUnreleasedEntryFailMsg` to allow the specification of a custom fail message
 when using `--requireUnreleasedEntry` or the `validate` command
