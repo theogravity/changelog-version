@@ -1,4 +1,4 @@
-# UNRELEASED
+# 2.1.0 - Wed May 30 2018 08:05:44
 
 The ability to exit with an error code if the changelog lacks the unreleasedTag is now available.
 
