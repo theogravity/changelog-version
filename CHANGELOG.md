@@ -1,3 +1,8 @@
+# UNRELEASED
+
+- Added `--requireUnreleasedEntryFailMsg` to allow the specification of a custom fail message
+when using `--requireUnreleasedEntry` or the `validate` command
+
 # 2.1.0 - Wed May 30 2018 08:05:44
 
 The ability to exit with an error code if the changelog lacks the unreleasedTag is now available.

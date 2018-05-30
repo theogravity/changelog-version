@@ -18,6 +18,8 @@ export default class VersionStamper extends BaseStamper {
    * "{version}" and "{date}". Default is '{version} - {date}'
    * @param {boolean} [options.requireUnreleasedEntry] If true, will throw an error if the unreleasedTag
    * is not found in the changelog content.
+   * @param {string} [options.requireUnreleasedEntryFailMsg] A custom message to render when
+   * requireUnreleasedEntry is true and the validation check fails
    * @param {function} [options.onBeforeRelease] This is called before doing the version stamping.
    * @param {function} [options.onAfterRelease] This is called after the version stamping is complete.
    * This function is called with the following params:
@@ -32,6 +34,7 @@ export default class VersionStamper extends BaseStamper {
     this.unreleasedTag = options.unreleasedTag || '[UNRELEASED]'
     this.unreleasedTagFormat = options.unreleasedTagFormat || '{version} - {date}'
     this.requireUnreleasedEntry = options.requireUnreleasedEntry || false
+    this.requireUnreleasedEntryFailMsg = options.requireUnreleasedEntryFailMsg || null
 
     this.onBeforeRelease = options.onBeforeRelease || function () {}
     this.onAfterRelease = options.onAfterRelease || function () {}
@@ -132,7 +135,7 @@ export default class VersionStamper extends BaseStamper {
    */
   async _throwIfReleaseTagNotFound (changelogData) {
     if (!changelogData.includes(this.unreleasedTag)) {
-      throw new UnreleasedEntryNotFound(this.unreleasedTag)
+      throw new UnreleasedEntryNotFound(this.unreleasedTag, this.requireUnreleasedEntryFailMsg)
     }
   }
 

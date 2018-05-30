@@ -33,6 +33,7 @@ then
   LAST_COMMIT_MSG=`git log -1 --pretty=%B|tr -d '\r'`
 
   # Appending [skip ci] to the log message
+  # Note: --amend does not trigger the pre-commit hooks
   git commit --amend -m "${LAST_COMMIT_MSG} [skip ci]"
 
   # Push the commits back to master and assign a versioned release tag

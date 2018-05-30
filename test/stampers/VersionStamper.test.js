@@ -203,6 +203,29 @@ describe('VersionStamper class', () => {
 
       fsMock.restore()
     })
+
+    it('should allow a custom error message for UnreleasedEntryNotFound', async () => {
+      const changelogFile = 'CHANGELOG.md'
+      const packageFile = 'package.json'
+
+      fsMock({
+        [changelogFile]: 'abcd\n\nefgh\n\nighj',
+        [packageFile]: defaultVersionContent
+      })
+
+      const vs = new VersionStamper({
+        requireUnreleasedEntry: true,
+        requireUnreleasedEntryFailMsg: 'ERROR ERROR ERROR'
+      })
+
+      try {
+        await vs.release()
+      } catch (e) {
+        expect(e.message).to.equal('ERROR ERROR ERROR')
+      }
+
+      fsMock.restore()
+    })
   })
 
   describe('verify', () => {
@@ -260,6 +283,26 @@ describe('VersionStamper class', () => {
       })
 
       await expect(vs.verify()).to.be.rejectedWith(UnreleasedEntryNotFound)
+
+      fsMock.restore()
+    })
+
+    it('should allow a custom error message on failure', async () => {
+      fsMock({
+        'CHANGELOG.md': '# DIFFERENT_TAG',
+        'package.json': defaultVersionContent
+      })
+
+      const vs = new VersionStamper({
+        unreleasedTag: 'THIS_IS_A_TAG',
+        requireUnreleasedEntryFailMsg: 'ERROR ERROR ERROR'
+      })
+
+      try {
+        await vs.verify()
+      } catch (e) {
+        expect(e.message).to.equal('ERROR ERROR ERROR')
+      }
 
       fsMock.restore()
     })

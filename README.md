@@ -57,7 +57,7 @@ Your `package.json` file must have the new version you want to stamp the changel
     - [Example 2](#example-2)
   - [release](#release)
     - [Example](#example)
-  - [Verify](#verify)
+  - [verify](#verify)
 - [Custom configuration file](#custom-configuration-file)
   - [Additional properties](#additional-properties)
     - [Release properties](#release-properties)
@@ -186,19 +186,23 @@ $ changelog-version release --help
 
   Options:
 
-    --packageFile [fileName]         The relative path to package.json, or a JSON file that
+    --requireUnreleasedEntry                    If present, will exit with an error code if the
+                                        unreleasedTag is not found in the changelog file.
+    --requireUnreleasedEntryFailMsg [failText]  Message to display if requireUnreleasedEntry
+                                        is enabled and the validation check fails
+    --packageFile [fileName]                    The relative path to package.json, or a JSON file that
                                         contains the "version" field from projectRoot.
                                         Default is "package.json".
-    --unreleasedTag [textToReplace]  The text to find in the changelog which would get
+    --unreleasedTag [textToReplace]             The text to find in the changelog which would get
                                         replaced with the version / time.
                                         Default is "[UNRELEASED]".
-    --unreleasedTagFormat [format]   Format to replace unreleasedTag with.
+    --unreleasedTagFormat [format]              Format to replace unreleasedTag with.
                                         Available tags are "{version}" and "{date}".
                                         Default is '{version} - {date}'.
-    --dateFormat [format]            Date mask to use from the "dateformat" library when
+    --dateFormat [format]                       Date mask to use from the "dateformat" library when
                                         replacing the versionTag.
                                         Default is "default".
-    -h, --help                       output usage information
+    -h, --help                                  output usage information
 ```
 
 #### Example
@@ -223,7 +227,7 @@ Running `changelog-version release` will update `CHANGELOG.md` with:
 * New feature!
 ```
 
-### Verify
+### verify
 
 ```
 $ changelog-version verify --help
@@ -239,6 +243,8 @@ $ changelog-version verify --help
 
     --unreleasedTag [textToLookFor]  The text to find in the changelog.
                                         Default is "[UNRELEASED]".
+    --requireUnreleasedEntryFailMsg [failText]  Message to display if requireUnreleasedEntry
+                                        is enabled and the validation check fails
     -h, --help                       output usage information
 ```
 

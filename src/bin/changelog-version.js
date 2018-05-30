@@ -36,6 +36,8 @@ program
   You do *NOT* have to use "changelog-version prepare" before using this command.`)
   .option('--requireUnreleasedEntry', `If present, will exit with an error code if the 
                                     unreleasedTag is not found in the changelog file.`)
+  .option('--requireUnreleasedEntryFailMsg [failText]', `Message to display if requireUnreleasedEntry
+                                    is enabled and the validation check fails`)
   .option('--packageFile [fileName]', `The relative path to package.json, or a JSON file that
                                     contains the "version" field from projectRoot.
                                     Default is "package.json".`)
@@ -60,6 +62,8 @@ program
   Useful to run as part of a pre-commit hook.`)
   .option('--unreleasedTag [textToLookFor]', `The text to find in the changelog.
                                     Default is "[UNRELEASED]".`)
+  .option('--requireUnreleasedEntryFailMsg [failText]', `Message to display if requireUnreleasedEntry
+                                    is enabled and the validation check fails`)
   .action(async function (action, opt) {
     await runVerify(opt)
   })

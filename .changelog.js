@@ -49,5 +49,8 @@ module.exports = {
     return 'UNRELEASED'
   },
   unreleasedTagFormat: '{version} - {date}',
-  requireUnreleasedEntry: true
+  requireUnreleasedEntry: true,
+  requireUnreleasedEntryFailMsg: `You cannot commit until you've added the release notes to CHANGELOG.md
+  
+See CONTRIBUTING.md for instructions.`
 }
