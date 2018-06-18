@@ -14,6 +14,8 @@ export default class VersionStamper extends BaseStamper {
    * replaced with the version / time. Defaults to "[UNRELEASED]"
    * @param {string} [options.dateFormat] Date mask to use from the "dateformat" library when
    * replacing the versionTag. Default is "default".
+   * @param {string} [options.suffix] String that's tacked on to the end of the version. Useful
+   * when handling release builds for hotfixes, such as v1.0.1r1.
    * @param {string} [options.unreleasedTagFormat] Format to replace unreleasedTag with. Available tags are
    * "{version}" and "{date}". Default is '{version} - {date}'
    * @param {boolean} [options.requireUnreleasedEntry] If true, will throw an error if the unreleasedTag
@@ -31,6 +33,7 @@ export default class VersionStamper extends BaseStamper {
     super(options)
     this.packageFile = options.packageFile || 'package.json'
     this.dateFormat = options.dateFormat || 'default'
+    this.suffix = options.suffix || ''
     this.unreleasedTag = options.unreleasedTag || '[UNRELEASED]'
     this.unreleasedTagFormat = options.unreleasedTagFormat || '{version} - {date}'
     this.requireUnreleasedEntry = options.requireUnreleasedEntry || false
@@ -58,7 +61,7 @@ export default class VersionStamper extends BaseStamper {
     }
 
     const date = this._getReleaseDate()
-    const version = this._getVersion(packageFileContents)
+    const version = `${this._getVersion(packageFileContents)}${this.suffix}`
     const releaseStamp = this._getReleaseStamp(version, date)
 
     const newChangelogData = this._replaceUnreleasedTag(

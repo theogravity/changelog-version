@@ -50,6 +50,8 @@ program
   .option('--dateFormat [format]', `Date mask to use from the "dateformat" library when
                                     replacing the versionTag.
                                     Default is "default".`)
+  .option('--suffix [string]', `Append this string to the version number. Usually used for release
+                                    builds and hotfixes, such as 1.0.0-r1`)
   .action(async function (action, opt) {
     await runRelease(opt)
   })
