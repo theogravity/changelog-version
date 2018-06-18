@@ -52,6 +52,33 @@ describe('VersionStamper class', () => {
       fsMock.restore()
     })
 
+    it('should update the changelog with a custom suffix', async () => {
+      fsMock({
+        'CHANGELOG.md': defaultChangelogContent,
+        'package.json': defaultVersionContent
+      })
+
+      const options = {
+        suffix: 'CawCaw'
+      }
+
+      const vs = new VersionStamper(options)
+
+      await vs.release()
+
+      const data = await readFileAsync(join(projectRoot, 'CHANGELOG.md'), 'utf8')
+
+      expect(data).to.equal(`
+# Changelog
+
+## 1.2.3CawCaw - Sat Jan 01 2000 00:00:00
+
+- I have a change!
+`)
+
+      fsMock.restore()
+    })
+
     it('should update the changelog with a custom change log file', async () => {
       const changelogFile = 'changes.md'
 
