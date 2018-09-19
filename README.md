@@ -39,7 +39,7 @@ into this:
 
 ## What it will not do
 
-- Version bumping `package.json`. [`npm version`](https://docs.npmjs.com/cli/version) can do that job.
+- Version bumping `package.json`. [`version-bump`](https://www.npmjs.com/package/@theo.gravity/version-bump) can do that job.
 Your `package.json` file must have the new version you want to stamp the changelog with before running
 `changelog-version release`.
 - Commit changes to your VCS.
@@ -345,11 +345,14 @@ Called after the changelog has been updated.
 
 ### Auto-versioning + publishing in your CI
 
-Make sure you have `changelog-version` and
-[`npm-version-git-cli`](https://www.npmjs.com/package/npm-version-git-cli) installed
-locally into your project.
+Make sure you have `changelog-version`.
 
-`npm install npm-version-git-cli @theo.gravity/changelog-version --dev`
+Install:
+
+- [version-bump](https://www.npmjs.com/package/@theo.gravity/version-bump)
+- [version-bump-plugin-git](https://github.com/theogravity/version-bump-plugin-git)
+
+`npm install @theo.gravity/version-bump @theo.gravity/changelog-version version-bump-plugin-git --dev`
 
 #### CircleCI
 
@@ -364,7 +367,7 @@ The following `package.json` script is used in conjunction with the CircleCI flo
 {
   "scripts": {
       "release-log": "changelog-version release",
-      "prepare-publish": "npm-version-git-cli && npm run release-log"
+      "prepare-publish": "version-bump git-commit-msg && npm run release-log"
   }
 }
 ```
