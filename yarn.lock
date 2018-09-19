@@ -2,27 +2,9 @@
 # yarn lockfile v1
 
 
-"@theo.gravity/changelog-version@^2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@theo.gravity/changelog-version/-/changelog-version-2.1.1.tgz#bc346a8efa09178580db1045419a7b7adfac8d3d"
-  dependencies:
-    commander "^2.15.1"
-    dateformat "^3.0.3"
-    debug "^3.1.0"
-
-"@theo.gravity/version-bump@1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@theo.gravity/version-bump/-/version-bump-1.0.4.tgz#33ad52685ce57bd6583f449a4eebf4f638b0f670"
-  dependencies:
-    debug "^3.1.0"
-    load-deps "^1.0.5"
-    semver "^5.5.1"
-    semver-parser "^2.0.1"
-    yargs "^12.0.2"
-
-"@theo.gravity/version-bump@^1.0.9":
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/@theo.gravity/version-bump/-/version-bump-1.0.9.tgz#d744f3ef08ec79e8a199f1e5d8a26b32844a391f"
+"@theo.gravity/version-bump@^1.0.10":
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/@theo.gravity/version-bump/-/version-bump-1.0.10.tgz#2b61caff09f795a8b74f4639f300a5e2e2e9ba4e"
   dependencies:
     debug "^3.1.0"
     load-deps "^1.0.5"
@@ -2829,11 +2811,11 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
 
-version-bump-plugin-git@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/version-bump-plugin-git/-/version-bump-plugin-git-1.0.3.tgz#44670cf336d3ad87a10bd4207778be2d1b5908c3"
+version-bump-plugin-git@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/version-bump-plugin-git/-/version-bump-plugin-git-1.0.4.tgz#7799f58c56023b176546d84eb74df03e9e25e03f"
   dependencies:
-    "@theo.gravity/version-bump" "1.0.4"
+    "@theo.gravity/version-bump" "^1.0.10"
     git-last-commit "^0.3.0"
 
 vow-fs@0.3.4:
