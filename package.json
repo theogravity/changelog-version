@@ -35,7 +35,7 @@
     "changelog:verify": "node --require babel-register ./src/bin/changelog-version.js verify",
     "changelog:prepare": "node --require babel-register ./src/bin/changelog-version.js prepare",
     "changelog:release": "node --require babel-register ./src/bin/changelog-version.js release",
-    "prepare-publish": "changelog:verify && version-bump git-commit-msg && npm run changelog:release"
+    "prepare-publish": "npm run changelog:verify && version-bump git-commit-msg && npm run changelog:release"
   },
   "pre-commit": [
     "test",
