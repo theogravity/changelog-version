@@ -37,13 +37,13 @@ then
 
   # Appending [skip ci] to the log message
   # Note: --amend does not trigger the pre-commit hooks
-  git commit --amend -m "${PKG_VERSION} [skip ci]"
+  git commit -m "${PKG_VERSION} [skip ci]"
 
   git tag v${PKG_VERSION}
 
   # Push the commits back to master and assign a versioned release tag
   # Had to add --force because the pull was getting rejected each time
-  git push --force && git push origin "v${PKG_VERSION}" --force
+  git push && git push origin "v${PKG_VERSION}"
 
   # Publish the package to npm
   echo "Publishing package"
