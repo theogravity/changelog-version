@@ -2318,7 +2318,7 @@ locate-path@^3.0.0:
     p-locate "^3.0.0"
     path-exists "^3.0.0"
 
-lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.4, lodash@^4.3.0:
+lodash@^4.17.13, lodash@^4.17.15, lodash@^4.17.4, lodash@^4.3.0:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
@@ -3600,15 +3600,15 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
 
-toc-md-alt@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/toc-md-alt/-/toc-md-alt-0.3.0.tgz#8e34ad323805a796c0f467e560653e5f9f13ece6"
-  integrity sha512-dREVDB/Ejk+WKsaOvlFEUUPNgMLJZP/I4WdR+hV2safl/O6fPE6qeJISIP5mF+o59eg5tsvVh0Lqw2GJLl3qog==
+toc-md-alt@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/toc-md-alt/-/toc-md-alt-0.3.1.tgz#22849cd2932fde868bf08b6b2c26d23c824f438a"
+  integrity sha512-tJwg17Y253I0jJa0Vt1PCx49ZLGht/FVDYDNz7aXL80YCJG9pEfP9TzjgmXBR28s2c4PJSXF3uWSP0PfJrxCaA==
   dependencies:
     coa "0.4.1"
     colors "1.0.3"
     inherit "2.2.2"
-    lodash "^4.17.11"
+    lodash "^4.17.15"
     marked "0.3.12"
     parse5 "2.1.5"
     vow-fs "^0.3.6"
