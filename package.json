@@ -1,6 +1,6 @@
 {
   "name": "@theo.gravity/changelog-version",
-  "version": "2.1.10",
+  "version": "2.1.11",
   "description": "Creates / updates a changelog with customizable options, including version / timestamp / CI support.",
   "main": "lib/index.js",
   "bin": {
